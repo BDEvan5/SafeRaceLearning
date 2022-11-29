@@ -15,8 +15,8 @@ dynamics_path: "Data/Dynamics/"
 min_v: 2
 
 kernel_mode: "fast"
-max_v: 8
-nq_speed: 9
+max_v: 6
+nq_speed: 6
 
 nq_steer: 5
 kernel_time_step: 0.2

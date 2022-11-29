@@ -3,7 +3,7 @@ test_name: "Online_RewardsFast" # name params
 architecture: "fast"
 
 set_n: 1
-n: 1
+n: 5
 
 # agent training parameters
 train_mode: "Online"
