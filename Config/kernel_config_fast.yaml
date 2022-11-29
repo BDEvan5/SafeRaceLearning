@@ -1,0 +1,31 @@
+# Config file for kernel generation
+
+max_a: 8.5
+max_steer: 0.4
+max_d_dot: 3.2
+mu: 0.523
+m: 3.47
+g: 9.81
+l_r: 0.171
+l_f: 0.158
+
+#kernel
+kernel_path: "Data/Kernels/"
+dynamics_path: "Data/Dynamics/"
+min_v: 2
+
+kernel_mode: "fast"
+max_v: 8
+nq_speed: 9
+
+nq_steer: 5
+kernel_time_step: 0.2
+n_dx: 40
+phi_range: 6.28
+n_phi: 41
+
+track_shrink_pixels: 8   # number of pixels to shrink the track map by
+n_intermediate_pts: 2
+
+
+

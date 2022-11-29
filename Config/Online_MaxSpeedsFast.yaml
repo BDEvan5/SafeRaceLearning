@@ -1,0 +1,33 @@
+
+
+test_name: "Online_MaxSpeedsFast" # name params
+
+set_n: 1
+n: 5
+
+architecture: "fast"
+train_mode: "Online"
+test_mode: "Std"
+n_train_steps: 10000
+
+reward: "Velocity"
+
+n_test_laps: 20
+
+noise_std: 0
+
+filter: False
+
+n_scans: 2
+random_seed: 10000
+
+map_name: "f1_esp"
+
+runs:
+
+  - max_speed: 4
+  - max_speed: 5
+  - max_speed: 6
+  - max_speed: 7
+  - max_speed: 8
+

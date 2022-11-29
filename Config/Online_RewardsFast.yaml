@@ -1,0 +1,30 @@
+
+test_name: "Online_RewardsFast" # name params
+architecture: "fast"
+
+set_n: 1
+n: 1
+
+# agent training parameters
+train_mode: "Online"
+test_mode: "Std"
+
+n_train_steps: 10000
+n_test_laps: 20
+
+noise_std: 0
+max_speed: 5
+
+filter: False
+
+n_scans: 2
+random_seed: 10000
+
+map_name: "f1_esp"
+
+runs:
+  - reward: "PPPS"
+  - reward: "Cth"
+  - reward: "Zero"
+  - reward: "Progress"
+  - reward: "Velocity"

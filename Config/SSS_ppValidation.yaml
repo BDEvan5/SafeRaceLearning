@@ -1,0 +1,44 @@
+
+# Run with PP and rando
+
+planner: "PP"
+raceline: True
+# raceline: False
+test_name: "SSS_ppValidation"
+filter: False
+n_test_laps: 2
+
+set_n: 1
+n: 1
+
+train_mode: "Std"
+test_mode: "Super"
+
+
+noise_std: 0
+n_scans: 1
+random_seed: 1000
+
+map_name: "f1_mco"
+racing_mode: "Fast"
+
+
+runs:
+  - max_speed: 4
+    test_mode: "Super"
+  - max_speed: 6
+    test_mode: "Super"
+  - max_speed: 8
+    test_mode: "Super"
+
+  - max_speed: 4
+    test_mode: "Std"
+  - max_speed: 6
+    test_mode: "Std"
+  - max_speed: 8
+    test_mode: "Std"
+
+
+
+
+
