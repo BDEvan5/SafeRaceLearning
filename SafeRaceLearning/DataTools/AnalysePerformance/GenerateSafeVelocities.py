@@ -6,7 +6,7 @@ import os
 from PIL import Image
 import glob
 import trajectory_planning_helpers as tph
-from matplotlib.ticker import PercentFormatter, MultipleLocator
+from matplotlib.ticker import PercentFormatter, MultipleLocator, MaxNLocator
 from matplotlib.collections import LineCollection
 
 from SafeRaceLearning.DataTools.MapData import MapData
@@ -14,8 +14,8 @@ from SafeRaceLearning.Utils.StdTrack import StdTrack
 from SafeRaceLearning.Utils.RacingTrack import RacingTrack
 from SafeRaceLearning.Utils.utils import *
 
-# SAVE_PDF = True
-SAVE_PDF = False
+SAVE_PDF = True
+# SAVE_PDF = False
 
 def ensure_path_exists(folder):
     if not os.path.exists(folder):
@@ -39,8 +39,9 @@ class AnalyseTestLapData:
 
         self.initialise_folder()
 
-        # for self.lap_n in range(2):
-        for self.lap_n in range(50):
+        for self.lap_n in range(2):
+        # for self.lap_n in range(50):
+        # for self.lap_n in range(5):
             if not self.load_lap_data(): break # no more laps
             self.load_safety_data()
 
@@ -223,13 +224,16 @@ class AnalyseTestLapData:
         points = points.reshape(-1, 1, 2)
         segments = np.concatenate([points[:-1], points[1:]], axis=1)
 
-        norm = plt.Normalize(0, 8)
+        norm = plt.Normalize(2, 6)
         lc = LineCollection(segments, cmap='jet', norm=norm)
         lc.set_array(vs)
         lc.set_linewidth(5)
         line = plt.gca().add_collection(lc)
         cbar = plt.colorbar(line,fraction=0.046, pad=0.04, shrink=0.99)
-        cbar.ax.tick_params(labelsize=14)
+        # cbar.ax.major_locator(MaxNLocator(integer=True))\
+        cbar.ax.get_yaxis().set_major_locator(MultipleLocator(1))
+        cbar.ax.tick_params(labelsize=20)
+        # cbar.ax.tick_params(labelsize=14)
         # plt.xlim(points[:, 0, 0].min()-10, points[:, 0, 0].max()+10)
         # plt.ylim(points[:, 0, 1].min()-10, points[:, 0, 1].max()+10)
         plt.gca().set_aspect('equal', adjustable='box')
@@ -311,15 +315,15 @@ class AnalyseTestLapData:
 
         points = self.states[:, 0:2]        
         self.map_data.plot_map_img()
-        self.map_data.plot_centre_line()
+        # self.map_data.plot_centre_line()
         xs, ys = self.map_data.pts2rc(points)
 
         if self.safety_data is not None:
             for i in range(len(xs)-2):
                 if self.safety_data[i, 4] > 0.001:
-                    plt.plot(xs[i], ys[i], 'ro', markersize=2)
+                    plt.plot(xs[i], ys[i], 'ro', markersize=4)
                 else:
-                    plt.plot(xs[i], ys[i], 'go', markersize=2)
+                    plt.plot(xs[i], ys[i], 'go', markersize=6)
         else: 
             for i in range(len(xs)-2):
                 plt.plot(xs[i], ys[i], 'go', markersize=2)
