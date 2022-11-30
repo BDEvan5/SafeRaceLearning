@@ -1,6 +1,7 @@
 import numpy as np
 import yaml
 from matplotlib import pyplot as plt
+from matplotlib.ticker import MaxNLocator, MultipleLocator
 from SafeRaceLearning.Utils.utils import *
 
 def KernelAblationGraph():
@@ -44,5 +45,41 @@ def KernelAblationGraph():
 
     plt.show()
 
+def KernelNoisyAblationSpeedGraph():
+    p = "Data/Vehicles/SSS_NoisyAblation/"
+    sets = [0, 1, 2, 3, 4, 6]
+    # sets = [0, 5, 1, 15, 2, 3, 4, 6]
+    
+    speeds = [2, 3, 4, 5, 6]
+    map_name = "f1_aut"
+    
+    plt.figure(1, figsize=(4, 2.2))
+    for s, speed in enumerate(speeds):
+        agents = [f"Rando_Std_Super_None_{map_name}_{speed}_{i}_0" for i in sets]
+        
+        data = []
+        for i in range(len(agents)):
+            with open(p + agents[i] + "/" + agents[i] + "_record.yaml") as file:
+                file_data = yaml.load(file, Loader=yaml.FullLoader)
+                data.append(file_data["success_rate"])
+        
+        xs = np.array(sets) *10
+        plt.plot(xs, data, 'o-', color=pp[s], label=speeds[s])
 
-KernelAblationGraph()
+    plt.grid(True)
+    plt.legend(loc='center', bbox_to_anchor=(0.41, 1.15), ncol=5, framealpha=0)
+    # plt.legend(loc='upper right')
+    plt.xlabel("Standard Deviation (cm)")
+    plt.ylabel("Success Rate (%)")
+    plt.gca().get_yaxis().set_major_locator(MaxNLocator(nbins=5))
+    
+    plt.tight_layout()
+
+    plt.savefig(p + f"KernelNoisyAblationSpeedGraph_{map_name}.svg", bbox_inches='tight', pad_inches=0)
+    plt.savefig(p + f"KernelNoisyAblationSpeedGraph_{map_name}.pdf", bbox_inches='tight', pad_inches=0)
+
+    # plt.show()
+
+
+# KernelAblationGraph()
+KernelNoisyAblationSpeedGraph()

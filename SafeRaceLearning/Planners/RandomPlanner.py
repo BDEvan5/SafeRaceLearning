@@ -11,7 +11,7 @@ class RandomPlanner:
         self.conf = conf
         self.run = run
 
-        self.max_speed = 6
+        self.max_speed = run.max_speed
 
         self.path = conf.vehicle_path + run.path + run.run_name 
         init_file_struct(self.path)

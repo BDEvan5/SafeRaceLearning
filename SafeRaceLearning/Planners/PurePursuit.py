@@ -315,7 +315,8 @@ class PurePursuit:
         theta = state[2]
         # lookahead = 1.8
         # lookahead = 1.2
-        lookahead = 1 + 0.6* state[3] /  6
+        lookahead = 1 + 0.6* state[3] /  self.max_speed
+        # lookahead = 1 + 0.6* state[3] /  6
         # lookahead = 1 + 0.6* state[3] /  8
         lookahead_point = self.trajectory.get_current_waypoint(position, lookahead)
 

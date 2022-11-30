@@ -3,14 +3,14 @@
 
 # planner: "PP"
 raceline: False
-planner: "Rando"
+architecture: "Rando"
 
 test_name: "SSS_NoisyAblation"
 
-set_n: 2
 n: 1
 
 train_mode: "Std"
+reward: "None"
 
 test_mode: "Super"
 # n_test_laps: 50
@@ -18,24 +18,26 @@ n_test_laps: 10
 
 noise_std: 0
 
-# racing_mode: "Slow"
-racing_mode: "Fast"
 filter: False
 
 n_scans: 1
 random_seed: 1000
-max_speed: 2
+max_speed: 6
 
 # map_name: "f1_aut"
 # map_name: "f1_esp"
-# map_name: "f1_aut_wide"
-map_name: "f1_mco"
+map_name: "f1_aut"
+# map_name: "f1_mco"
 
 runs:
   - noise_std: 0
     set_n: 0
+  - noise_std: 0.05
+    set_n: 05
   - noise_std: 0.1
     set_n: 1
+  - noise_std: 0.15
+    set_n: 15
   - noise_std: 0.2
     set_n: 2
   - noise_std: 0.3

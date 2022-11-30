@@ -113,8 +113,8 @@ class VeiwKernel:
             plt.yticks([])
 
             plt.tight_layout()
-            plt.savefig(f"Data/KernelImgs/HeatMaps/KernelHeatMap8_{phi_ind}.pdf", pad_inches=0, bbox_inches='tight')
-            plt.savefig(f"Data/KernelImgs/HeatMaps/KernelHeatMap8_{phi_ind}.svg", pad_inches=0, bbox_inches='tight')
+            plt.savefig(f"Data/KernelImgs/HeatMaps/KernelHeatMap6_{phi_ind}.pdf", pad_inches=0, bbox_inches='tight')
+            plt.savefig(f"Data/KernelImgs/HeatMaps/KernelHeatMap6_{phi_ind}.svg", pad_inches=0, bbox_inches='tight')
 
             # plt.show()
         
@@ -220,13 +220,13 @@ class VeiwKernel:
 
 
 def view_kernel():
-    conf = load_conf("kernel_config")
+    conf = load_conf("kernel_generation_config")
     conf.map_name = "f1_esp"
     # conf.map_name = "f1_aut_wide"
     img = prepare_track_img(conf) 
     img, img2 = shrink_img(img, 5)
     k = VeiwKernel(conf, img2)
-    # k.heat_map_view()
+    k.heat_map_view()
     # k.save_mode_imgs()
     # k.save_angle_imgs()
 

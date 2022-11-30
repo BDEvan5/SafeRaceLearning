@@ -215,6 +215,44 @@ def KernelValidationPP_GraphsIntervention():
     plt.tight_layout()
     plt.savefig(f"Data/Vehicles/SSS_ppValidation/KernelValidationPP_interventions.svg", pad_inches=0, bbox_inches='tight')
     plt.savefig(f"Data/Vehicles/SSS_ppValidation/KernelValidationPP_interventions.pdf", pad_inches=0, bbox_inches='tight')
+                
+def KernelRandomSpeeds_GraphsIntervention():
+    folder = "Data/Vehicles/SSS_RandomSpeeds/"
+
+    plt.figure(figsize=(4., 2))
+    colors = ["#16A085", "#E74C3C", "#3498DB", "#D35400"]
+
+    print_map_names = ["AUT", "MCO", "ESP", "GBR"]
+    for m, map_name in enumerate(["f1_aut", "f1_mco", "f1_esp", "f1_gbr"]):
+        speeds = [2, 3, 4, 5, 6]
+        super_agents = [f"Rando_Std_Super_None_{map_name}_{i}_1_0" for i in speeds]
+        
+        print_names = speeds
+        metrics_super = ["No. Interventions", "Lap Time (s)", "Avg. Velocity (m/s)"]
+        super_metric_inds = [-3, 8, 9]
+
+        data_super = [[] for _ in metrics_super]
+        for agent in super_agents:
+            with open(folder + f"{agent}/TestingSummaryStatistics.txt", 'r') as file:
+                lines = file.readlines()
+                line = lines[2] # first lap is heading
+                line = line.split(',')
+                for i in range(len(metrics_super)):
+                    metric_data = float(line[super_metric_inds[i]])
+                    data_super[i].append(metric_data)
+
+        plt.plot(data_super[0], linewidth=2, color=pp[m], label=print_map_names[m])
+
+    plt.grid(True)
+    plt.xticks([0, 1, 2, 3, 4], [2, 3, 4, 5, 6])
+    plt.ylabel('Interventions')
+    plt.xlabel('Max Speed (m/s)')
+    plt.gca().yaxis.set_major_locator(MaxNLocator(nbins=4, integer=True))
+    plt.legend(ncol=4, loc='center', bbox_to_anchor=(0.42, 1.24), framealpha=0)
+    
+    plt.tight_layout()
+    plt.savefig(f"Data/Vehicles/SSS_RandomSpeeds/KernelRandomSpeeds_interventions.svg", pad_inches=0, bbox_inches='tight')
+    plt.savefig(f"Data/Vehicles/SSS_RandomSpeeds/KernelRandomSpeeds_interventions.pdf", pad_inches=0, bbox_inches='tight')
         
         
 def KernelValidationPP_BarGraphs():
@@ -281,7 +319,8 @@ def KernelValidationPP_BarGraphs():
 
 # KernelValidationRandom()
 # KernelValidationPP_BarGraphs()
-KernelValidationPP_GraphsIntervention()
+# KernelValidationPP_GraphsIntervention()
+KernelRandomSpeeds_GraphsIntervention()
 # KernelValidationPP_Graphs()
 # KernelValidationPP()
 
