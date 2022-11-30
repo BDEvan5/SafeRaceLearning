@@ -25,10 +25,7 @@ class KernelGenerator:
         self.ys = np.linspace(0, self.n_y/self.n_dx, self.n_y)
         self.phis = np.linspace(-np.pi, np.pi, self.n_phi)
         
-        if conf.kernel_mode =="fast":
-            m = FastModes(conf)
-        elif conf.kernel_mode == "slow":
-            m = SlowModes(conf)
+        m = FastModes(conf)
         self.n_modes = m.n_modes
         self.qs = m.qs
 
@@ -213,30 +210,13 @@ def build_track_kernel(conf):
 
 
 
-def generate_slow_kernels():
-    print("Generating SLOW kernels")
-    print("--------------------------------------------------")
-    conf = load_conf("slow_kernel_config")
-    build_dynamics_table(conf)
-    map_names = ["f1_esp", "f1_mco", "f1_aut", "f1_aut_wide"]
-    for map_name in map_names:
-        conf.map_name = map_name
-
-        print_kernel_conf_params(conf)
-
-        build_track_kernel(conf)
-        
-        filter_slow_kernel(conf.map_name)
-
-
-
 def generate_fast_kernels():
     print("Generating FAST kernels")
     print("--------------------------------------------------")
-    conf = load_conf("fast_kernel_config")
+    conf = load_conf("kernel_generation_config")
     
     build_dynamics_table(conf)
-    map_names = ["f1_esp", "f1_mco", "f1_aut", "f1_aut_wide"]
+    map_names = ["f1_esp", "f1_mco", "f1_aut", "f1_gbr"]
     for map_name in map_names:
         conf.map_name = map_name
 
@@ -250,8 +230,7 @@ def generate_single_kernel():
     print("Generating single kernel for testing")
     print("--------------------------------------------------")
     
-    conf = load_conf("fast_kernel_config")
-    # conf = load_conf("slow_kernel_config")
+    conf = load_conf("kernel_generation_config")
     
     build_dynamics_table(conf)
     
@@ -269,6 +248,5 @@ if __name__ == "__main__":
 
     # generate_single_kernel()
     generate_fast_kernels()
-    # generate_slow_kernels()
 
 

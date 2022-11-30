@@ -109,11 +109,11 @@ class FastModesPlot:
 
             plt.tight_layout()
 
-            plt.savefig(f"Data/KernelImgs/ModeDiagramFone_{i}.svg", bbox_inches='tight', pad_inches=0)
+            # plt.savefig(f"Data/KernelImgs/ModeDiagramFone_{i}.svg", bbox_inches='tight', pad_inches=0)
             # if i == 12:
-            plt.savefig(f"Data/KernelImgs/ModeDiagramFone_{i}.pdf", bbox_inches='tight', pad_inches=0)
+            # plt.savefig(f"Data/KernelImgs/ModeDiagramFone_{i}.pdf", bbox_inches='tight', pad_inches=0)
 
-            # plt.show()
+            plt.show()
 
 
     def get_mode_id(self, state):
