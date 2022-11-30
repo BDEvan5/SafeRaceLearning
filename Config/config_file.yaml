@@ -1,5 +1,5 @@
 # Vehicle params
-max_v: 8
+max_v: 6
 max_a: 8.5
 max_steer: 0.4
 max_d_dot: 3.2

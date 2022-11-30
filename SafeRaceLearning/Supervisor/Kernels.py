@@ -10,16 +10,10 @@ class KernelList:
     def __init__(self, conf, run):
         assert run.filter == False, "Incorrect filter mode in Kernel List"
 
-        if run.architecture == "fast":
-            kernel_name = conf.kernel_path + f"Kernel_{run.architecture.lower()}_{conf.max_v}_{run.map_name}"
-            kernel_conf = load_kernel_config(kernel_name)
-            self.m = FastModes(kernel_conf)
-        elif run.architecture == "slow":
-            kernel_name = conf.kernel_path + f"Kernel_{run.architecture.lower()}_2_{run.map_name}"
-            kernel_conf = load_kernel_config(kernel_name)
-            self.m = SlowModes(kernel_conf)
-        else:
-            raise ValueError(f"Unknown racing mode: {run.racing_mode}")
+        kernel_name = conf.kernel_path + f"Kernel_fast_{conf.max_v}_{run.map_name}"
+        kernel_conf = load_kernel_config(kernel_name)
+        self.m = FastModes(kernel_conf)
+
 
         self.d_max = kernel_conf.max_steer
         self.resolution = kernel_conf.n_dx

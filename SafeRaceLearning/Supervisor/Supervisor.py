@@ -29,6 +29,7 @@ class Supervisor:
         
         pp_run = copy(planner.run)
         pp_run.raceline = False
+        pp_run.pp_speed_mode = 'link'
         self.pp_planner = PurePursuit(planner.conf, pp_run, False)
 
         if run.filter: self.kernel = KernelListFilter(conf, run)

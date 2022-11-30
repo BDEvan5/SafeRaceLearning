@@ -1,51 +1,26 @@
 
 
-planner: "Rando"
+architecture: "Rando"
 test_name: "SSS_RandomValidation"
 filter: False
 n_test_laps: 50
-
-
-# planner: "Rando"
-# test_name: "FilterValidationRandom"
-# filter: True
-## comment out the fast runs.
 
 set_n: 1
 n: 1
 
 train_mode: "Std"
 test_mode: "Super"
-
+reward: "None"
 
 noise_std: 0
 n_scans: 1
 random_seed: 1000
-max_speed: 8
+max_speed: 6
 
 runs:
-  - map_name: "f1_esp"
-    racing_mode: "Slow"
-  - map_name: "f1_aut_wide"
-    racing_mode: "Slow"
-  - map_name: "f1_mco"
-    racing_mode: "Slow"
-
-  - map_name: "f1_esp"
-    racing_mode: "Slow"
-    filter: True
-  - map_name: "f1_aut_wide"
-    racing_mode: "Slow"
-    filter: True
-  - map_name: "f1_mco"
-    racing_mode: "Slow"
-    filter: True
-
-  - map_name: "f1_esp"
-    racing_mode: "Fast"
-  - map_name: "f1_aut_wide"
-    racing_mode: "Fast"
-  - map_name: "f1_mco"
-    racing_mode: "Fast"
+  # - map_name: "f1_esp"
+  # - map_name: "f1_aut"
+  # - map_name: "f1_mco"
+  - map_name: "f1_gbr"
 
 

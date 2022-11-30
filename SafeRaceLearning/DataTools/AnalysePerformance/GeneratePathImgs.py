@@ -15,8 +15,8 @@ from RacingRewards.RewardSignals.RacingTrack import RacingTrack
 from RacingRewards.Utils.utils import *
 from matplotlib.ticker import MultipleLocator
 
-# SAVE_PDF = False
-SAVE_PDF = True
+SAVE_PDF = False
+# SAVE_PDF = True
 
 
 def ensure_path_exists(folder):
@@ -59,7 +59,7 @@ class AnalyseTestLapData:
         self.std_track = StdTrack(self.map_name)
         self.racing_track = RacingTrack(self.map_name)
 
-        for self.lap_n in range(5):
+        for self.lap_n in range(50):
             if not self.load_lap_data(): break # no more laps
             self.generate_path_plot()
 
@@ -104,7 +104,7 @@ class AnalyseTestLapData:
         plt.tight_layout()
         # plt.show()
 
-        name = self.path + f"TestPaths/{self.vehicle_name}_velocity_map_{self.lap_n}"
+        name = self.path + f"TestPaths/{self.vehicle_name}_TestPath_{self.lap_n}"
         plt.savefig(name + ".svg", bbox_inches='tight')
         if SAVE_PDF:
             plt.savefig(name + ".pdf", bbox_inches='tight', pad_inches=0)
@@ -114,7 +114,7 @@ class AnalyseTestLapData:
 
 def analyse_folder():
 
-    path = "Data/Vehicles/Eval_RewardsSlow/"
+    path = "Data/Vehicles/SSS_RandomValidation/"
     
     TestData = AnalyseTestLapData()
     TestData.explore_folder(path)

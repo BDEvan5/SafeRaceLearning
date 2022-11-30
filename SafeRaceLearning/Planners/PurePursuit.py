@@ -315,7 +315,8 @@ class PurePursuit:
         theta = state[2]
         # lookahead = 1.8
         # lookahead = 1.2
-        lookahead = 1 + 0.6* state[3] /  8
+        lookahead = 1 + 0.6* state[3] /  6
+        # lookahead = 1 + 0.6* state[3] /  8
         lookahead_point = self.trajectory.get_current_waypoint(position, lookahead)
 
         if state[3] < self.v_min_plan:
@@ -326,7 +327,7 @@ class PurePursuit:
         if self.speed_mode == 'constant':
             speed = 2
         elif self.speed_mode == 'link':
-            speed = calculate_speed(steering_angle, 0.8, 7)
+            speed = calculate_speed(steering_angle, 0.8, 6)
         elif self.speed_mode == 'raceline':
             speed = speed_raceline
         else:
