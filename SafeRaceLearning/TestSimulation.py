@@ -221,7 +221,9 @@ class TestSimulation():
 
 
 def main():
-    run_file = "SSS_RandomValidation"
+    # run_file = "SSS_RandomValidation"
+    # run_file = "SSS_ppValidation"
+    run_file = "SSS_RandomSpeeds"
     
     
     sim = TestSimulation(run_file)

@@ -1,0 +1,66 @@
+
+
+architecture: "Rando"
+test_name: "SSS_RandomSpeeds"
+filter: False
+n_test_laps: 20
+
+set_n: 1
+n: 1
+
+train_mode: "Std"
+test_mode: "Super"
+reward: "None"
+
+noise_std: 0
+n_scans: 1
+random_seed: 1000
+
+runs:
+  - map_name: "f1_esp"
+    max_speed: 2
+  - map_name: "f1_esp"
+    max_speed: 3
+  - map_name: "f1_esp"
+    max_speed: 4
+  - map_name: "f1_esp"
+    max_speed: 5
+  - map_name: "f1_esp"
+    max_speed: 6
+
+  - map_name: "f1_gbr"
+    max_speed: 2
+  - map_name: "f1_gbr"
+    max_speed: 3
+  - map_name: "f1_gbr"
+    max_speed: 4
+  - map_name: "f1_gbr"
+    max_speed: 5
+  - map_name: "f1_gbr"
+    max_speed: 6
+
+  - map_name: "f1_mco"
+    max_speed: 2
+  - map_name: "f1_mco"
+    max_speed: 3
+  - map_name: "f1_mco"
+    max_speed: 4
+  - map_name: "f1_mco"
+    max_speed: 5
+  - map_name: "f1_mco"
+    max_speed: 6
+
+  - map_name: "f1_aut"
+    max_speed: 2
+  - map_name: "f1_aut"
+    max_speed: 3
+  - map_name: "f1_aut"
+    max_speed: 4
+  - map_name: "f1_aut"
+    max_speed: 5
+  - map_name: "f1_aut"
+    max_speed: 6
+
+
+
+

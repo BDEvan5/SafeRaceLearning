@@ -1,12 +1,12 @@
 
 # Run with PP and rando
 
-planner: "PP"
+architecture: "PP"
 raceline: True
-# raceline: False
+pp_speed_mode: "raceline"
 test_name: "SSS_ppValidation"
 filter: False
-n_test_laps: 2
+n_test_laps: 5
 
 set_n: 1
 n: 1
@@ -19,23 +19,28 @@ noise_std: 0
 n_scans: 1
 random_seed: 1000
 
-map_name: "f1_mco"
-racing_mode: "Fast"
-
+# map_name: "f1_mco"
+map_name: "f1_gbr"
+# map_name: "f1_aut"
+# map_name: "f1_esp"
 
 runs:
+  - max_speed: 3
+    test_mode: "Super"
   - max_speed: 4
     test_mode: "Super"
-  - max_speed: 6
+  - max_speed: 5
     test_mode: "Super"
-  - max_speed: 8
+  - max_speed: 6
     test_mode: "Super"
 
+  - max_speed: 3
+    test_mode: "Std"
   - max_speed: 4
     test_mode: "Std"
-  - max_speed: 6
+  - max_speed: 5
     test_mode: "Std"
-  - max_speed: 8
+  - max_speed: 6
     test_mode: "Std"
 
 
