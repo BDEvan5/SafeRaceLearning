@@ -191,10 +191,11 @@ def my_argmin(data):
 
 
 if __name__ == "__main__":
-    kernel_conf = load_conf("kernel_config_fast")
+    kernel_conf = load_conf("kernel_generation_config")
     fm = FastModesPlot(kernel_conf)
     fm.print_modes()
-    fm.plot_mode_picture()
+    # fm.plot_mode_picture()
+    
     # fm.plot_transitions()
     # fm.plot_mode_transitions()
 

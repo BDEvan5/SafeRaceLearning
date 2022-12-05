@@ -1,0 +1,32 @@
+
+test_name: "Std_TrainSteps" # name params
+architecture: "fast"
+
+set_n: 1
+n: 5
+
+# agent training parameters
+train_mode: "Std"
+test_mode: "Std"
+
+n_test_laps: 20
+
+noise_std: 0
+max_speed: 6
+
+filter: False
+
+n_scans: 2
+random_seed: 10000
+reward: "Cth"
+map_name: "f1_esp"
+
+runs:
+  - n_train_steps: 10000
+  - n_train_steps: 20000
+  - n_train_steps: 30000
+  - n_train_steps: 40000
+  - n_train_steps: 50000
+  - n_train_steps: 60000
+  - n_train_steps: 80000
+  - n_train_steps: 100000
