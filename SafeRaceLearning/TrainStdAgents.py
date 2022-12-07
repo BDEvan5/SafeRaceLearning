@@ -133,7 +133,8 @@ class TrainSimulation(TestSimulation):
 def main():
     
     # run_file = "Online_MapsFast"
-    run_file = "Std_TrainSteps"
+    # run_file = "Std_TrainSteps"
+    run_file = "Safe_TrainSteps"
     
     
     sim = TrainSimulation(run_file)

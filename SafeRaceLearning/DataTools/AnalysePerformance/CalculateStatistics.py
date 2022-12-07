@@ -215,8 +215,12 @@ def analyse_folder():
     # path = "Data/Vehicles/SSS_RandomValidation/"
     # path = "Data/Vehicles/SSS_ppValidation/"
     # path = "Data/Vehicles/SSS_RandomSpeeds/"
-    path = "Data/Vehicles/SSS_NoisyAblation/"
+    # path = "Data/Vehicles/SSS_NoisyAblation/"
 
+    path = "Data/Vehicles/Safe_TrainSteps/"
+    
+    
+    
     explore_folder(path)
 
 

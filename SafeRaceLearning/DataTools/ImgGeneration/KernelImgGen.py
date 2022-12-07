@@ -78,12 +78,75 @@ class KernelImg:
 
             plt.xticks([])
             plt.yticks([])
+            
+            # full map
             plt.xlim(80, 1140)
             plt.ylim(40, 920)
 
             plt.tight_layout()
-            # plt.savefig(f"Data/KernelImgs/HeatMaps/KernelHeatMap6_{phi_ind}.pdf", pad_inches=0, bbox_inches='tight')
+            plt.savefig(f"Data/KernelImgs/HeatMaps/KernelHeatMap6_{phi_ind}.pdf", pad_inches=0, bbox_inches='tight')
             plt.savefig(f"Data/KernelImgs/HeatMaps/KernelHeatMap6_{phi_ind}.svg", pad_inches=0, bbox_inches='tight')
+
+            # plt.show()
+            
+    def partial_heat_map_view(self):
+        # import matplotlib 
+        # matplotlib.rc('ytick', labelsize=15) 
+        plt.rcParams.update({'font.size': 15})
+        modes = np.arange(2, 27, 5)
+        print(f"Modes to use: {modes}")
+        print(f"M vals: {self.qs[modes]}")
+
+        kernel_colors = KernelColours()
+        
+        o_map = self.ref_table.copy()
+        o_map[self.ref_table != -1] = 0
+        o_map[self.ref_table == -1] = 1
+        
+        phis = np.arange(0, len(self.phis), 1, dtype=int)
+        for phi_ind in phis:
+            plt.close()
+            plt.figure(1)
+            plt.clf()
+            img = np.zeros_like(self.ref_table, dtype=int)
+            for m in modes:
+                img += compose_kernel_img(self.kl, self.ref_table, self.xs, self.ys, phi_ind, m)
+                # img += 1-self.kernel[:, :, phi_ind, m]
+
+            plt.imshow(img.T + o_map.T, origin='lower', cmap=kernel_colors.cm)
+            # plt.imshow(img.T + o_map.T * 7, origin='lower', cmap=kernel_colors.cm)
+            
+            ax = plt.gca()
+            ax.spines['top'].set_visible(False)
+            ax.spines['right'].set_visible(False)
+            ax.spines['bottom'].set_visible(False)
+            ax.spines['left'].set_visible(False)
+
+
+            plt.xticks([])
+            plt.yticks([])
+            
+            plt.xlim(360, 700)
+            plt.ylim(200, 500)
+
+            plt.tight_layout()
+            plt.savefig(f"Data/KernelImgs/PartialHeatMaps/Partial_Kernel6_{phi_ind}.svg", pad_inches=0, bbox_inches='tight')
+            plt.savefig(f"Data/KernelImgs/PartialHeatMaps/Partial_Kernel6_{phi_ind}.pdf", pad_inches=0, bbox_inches='tight')
+            
+            cbar = plt.colorbar(shrink=0.85, aspect=7)
+            cbar.ax.get_yaxis().set_ticks([])
+            tiks = [f"{self.qs[m, 1]}" for m in modes]
+            tiks.insert(0, "None")
+            tiks.append("All")
+            tiks.append("Track")
+            for j, lab in enumerate(tiks):
+                cbar.ax.text(.5, 0.3 + j*0.75, lab, ha='center', va='center', fontsize=15)
+            cbar.ax.set_ylabel('Mode Speed (m/s)', rotation=270)
+            cbar.ax.get_yaxis().labelpad = 15
+            
+            plt.savefig(f"Data/KernelImgs/PartialHeatMaps/Partial_Kernel6_cb_{phi_ind}.svg", pad_inches=0, bbox_inches='tight')
+            plt.savefig(f"Data/KernelImgs/PartialHeatMaps/Partial_Kernel6_cb_{phi_ind}.pdf", pad_inches=0, bbox_inches='tight')
+            
 
             # plt.show()
         
@@ -132,5 +195,6 @@ if __name__ == "__main__":
     conf = load_conf("kernel_generation_config")
     kernel = KernelImg(conf, "f1_aut")
     
-    kernel.heat_map_view()
+    # kernel.heat_map_view()
+    kernel.partial_heat_map_view()
     # kernel.compose_kernel_img()

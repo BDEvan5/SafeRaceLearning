@@ -57,7 +57,8 @@ class AnalyseTestLapData:
 
         self.vehicle_name = self.path.split("/")[-2]
         vehicle_type = self.vehicle_name.split("_")[1] 
-        if vehicle_type != "PP" and vehicle_type != "Rando":
+        # if vehicle_type != "PP" and vehicle_type != "Rando":
+        if True:
             self.map_name = self.vehicle_name.split("_")[4]
             if self.map_name == "f1":
                 self.map_name += "_" + self.vehicle_name.split("_")[5]
@@ -369,7 +370,8 @@ def explore_folder(path):
 
 def analyse_folder():
     # path = "Data/Vehicles/SSS_RandomValidation/"
-    path = "Data/Vehicles/SSS_NoisyAblation/"
+    # path = "Data/Vehicles/SSS_NoisyAblation/"
+    path = "Data/Vehicles/SSS_ppValidation/"
     # path = "Data/Vehicles/KernelValidationPP/"
 
     explore_folder(path)

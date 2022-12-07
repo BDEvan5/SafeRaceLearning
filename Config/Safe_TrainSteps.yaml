@@ -1,12 +1,12 @@
 
-test_name: "Std_TrainSteps" # name params
+test_name: "Safe_TrainSteps" # name params
 architecture: "fast"
 
 set_n: 1
 n: 5
 
 # agent training parameters
-train_mode: "Std"
+train_mode: "Online"
 test_mode: "Std"
 
 n_test_laps: 20
@@ -18,23 +18,23 @@ filter: False
 
 n_scans: 2
 random_seed: 10000
-reward: "Cth"
+reward: "Velocity"
 map_name: "f1_esp"
 
 runs:
-  - n_train_steps: 10000
+  - n_train_steps: 1000
     set_n: 1
-  - n_train_steps: 20000
+  - n_train_steps: 2000
     set_n: 2
-  - n_train_steps: 30000
+  - n_train_steps: 3000
     set_n: 3
-  - n_train_steps: 40000
+  - n_train_steps: 4000
     set_n: 4
-  - n_train_steps: 50000
+  - n_train_steps: 5000
     set_n: 5
-  - n_train_steps: 60000
+  - n_train_steps: 6000
     set_n: 6
-  - n_train_steps: 80000
+  - n_train_steps: 8000
     set_n: 8
-  - n_train_steps: 100000
+  - n_train_steps: 10000
     set_n: 10

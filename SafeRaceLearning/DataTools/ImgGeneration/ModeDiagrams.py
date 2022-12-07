@@ -188,9 +188,36 @@ def my_argmin(data):
     assert d_min != 1000000000, "Error in my_argmin function"
     return int(di)
 
+def plot_friction_img():
+    delta = np.linspace(-0.41, 0.41, 1000)
+    vels = get_velcoity(delta, 6, 1)
 
+    plt.figure(1, figsize=(2.6, 2))
+    plt.clf()
 
-if __name__ == "__main__":
+    # color = 'mediumorchid'
+    color = '#8E44AD'
+    plt.plot(delta, vels, linewidth=2, color=color)
+    plt.fill_between(delta, vels, 0, color=color, alpha=0.35)
+    plt.plot([0,0], [0, 9], color='black', linewidth=2)
+    plt.plot([-0.5,0.5], [0, 0], color='black', linewidth=2)
+
+    plt.xlabel("Steering Angle ")
+    plt.ylabel("Speed")
+    # plt.gca().get_yaxis().set_major_locator(MultipleLocator(2))
+    # plt.gca().get_xaxis().set_major_locator(MultipleLocator(0.1))
+    plt.xticks(ticks=[-0.3, -0.15, 0, 0.15, 0.3], labels=[])
+    plt.yticks([1.5, 3, 4.5, 6], [])
+
+    plt.ylim([0, 6.4])
+    plt.xlim([-0.44, 0.44])
+    plt.grid(True)
+
+    plt.tight_layout()
+    plt.savefig(f"Data/KernelImgs/FrictionLine.svg", bbox_inches='tight', pad_inches=0)
+    plt.savefig(f"Data/KernelImgs/FrictionLine.pdf", bbox_inches='tight', pad_inches=0)
+
+def plot_mode_imgs():
     kernel_conf = load_conf("kernel_generation_config")
     fm = FastModesPlot(kernel_conf)
     fm.print_modes()
@@ -200,4 +227,12 @@ if __name__ == "__main__":
     # fm.plot_mode_transitions()
 
     # fm = FastModes(kernel_conf)
+
+
+if __name__ == "__main__":
+    # plot_mode_imgs()
+
+
+
+    plot_friction_img()
 
