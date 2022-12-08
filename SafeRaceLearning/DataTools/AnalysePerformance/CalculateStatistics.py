@@ -217,7 +217,9 @@ def analyse_folder():
     # path = "Data/Vehicles/SSS_RandomSpeeds/"
     # path = "Data/Vehicles/SSS_NoisyAblation/"
 
-    path = "Data/Vehicles/Safe_TrainSteps/"
+    # path = "Data/Vehicles/Safe_TrainSteps/"
+    path = "Data/Vehicles/Safe_TrainSpeeds/"
+    # path = "Data/Vehicles/Std_TrainSteps/"
     
     
     

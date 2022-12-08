@@ -12,7 +12,7 @@ test_mode: "Std"
 n_test_laps: 20
 
 noise_std: 0
-max_speed: 6
+max_speed: 5
 
 filter: False
 
@@ -32,9 +32,9 @@ runs:
     set_n: 4
   - n_train_steps: 50000
     set_n: 5
-  - n_train_steps: 60000
-    set_n: 6
-  - n_train_steps: 80000
-    set_n: 8
-  - n_train_steps: 100000
-    set_n: 10
+  # - n_train_steps: 60000
+  #   set_n: 6
+  # - n_train_steps: 80000
+  #   set_n: 8
+  # - n_train_steps: 100000
+  #   set_n: 10

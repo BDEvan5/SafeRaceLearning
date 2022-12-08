@@ -1,0 +1,29 @@
+
+test_name: "Safe_TrainSpeeds" # name params
+architecture: "fast"
+
+set_n: 1
+n: 5
+
+# agent training parameters
+train_mode: "Online"
+test_mode: "Std"
+
+n_test_laps: 20
+
+noise_std: 0
+max_speed: 5
+
+filter: False
+
+n_scans: 2
+random_seed: 10000
+n_train_steps: 10000
+reward: "Velocity"
+map_name: "f1_esp"
+
+runs:
+  - max_speed: 3
+  - max_speed: 4
+  - max_speed: 5
+  - max_speed: 6

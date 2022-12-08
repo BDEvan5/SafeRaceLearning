@@ -1,0 +1,28 @@
+
+test_name: "Safe_TrainMaps" # name params
+architecture: "fast"
+
+set_n: 1
+n: 5
+
+# agent training parameters
+train_mode: "Online"
+test_mode: "Std"
+
+n_test_laps: 20
+
+noise_std: 0
+max_speed: 6
+
+filter: False
+
+n_scans: 2
+random_seed: 10000
+reward: "Velocity"
+n_train_steps: 10000
+
+runs:
+  - map_name: "f1_esp"
+  - map_name: "f1_mco"
+  - map_name: "f1_aut"
+  - map_name: "f1_gbr"

@@ -1,0 +1,28 @@
+
+test_name: "Std_TrainMaps" # name params
+architecture: "fast"
+
+set_n: 1
+n: 5
+
+# agent training parameters
+train_mode: "Std"
+test_mode: "Std"
+
+n_test_laps: 20
+
+noise_std: 0
+max_speed: 5
+
+filter: False
+
+n_scans: 2
+random_seed: 10000
+reward: "Cth"
+n_train_steps: 50000
+
+runs:
+  - map_name: "f1_esp"
+  - map_name: "f1_mco"
+  - map_name: "f1_aut"
+  - map_name: "f1_gbr"
