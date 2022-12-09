@@ -32,7 +32,8 @@ class VehicleData:
                 time = float(line[8])
                 if not np.isnan(time): 
                     self.times.append(time)
-                    success = float(line[12])
+                    success = float(line[14])
+                    # self.success_rates.append(0)
                     self.success_rates.append(success)
                     
                 avg_progress = float(line[7])
@@ -85,16 +86,21 @@ def aggregate_runs(path):
         vehicle_id = vehicle_name[:-2]
         print(vehicle_id)
         
-        if not vehicle_id in id_list and not vehicle_id[0:2] == "PP":
+        if not vehicle_id in id_list:
+            # if not vehicle_id in id_list and not vehicle_id[0:2] == "PP":
             id_list.append(vehicle_id)
         
     for i in range(len(id_list)):
-        v = VehicleData(id_list[i], n=5, prefix=path)
+        # v = VehicleData(id_list[i], n=4, prefix=path)
+        v = VehicleData(id_list[i], n=2, prefix=path)
         # v = VehicleData(id_list[i], n=3, prefix=path)
         
 
 
 
 # aggregate_runs("Data/Vehicles/Safe_TrainSteps/")
-aggregate_runs("Data/Vehicles/Safe_TrainSpeeds/")
+# aggregate_runs("Data/Vehicles/Safe_TrainSpeeds/")
+aggregate_runs("Data/Vehicles/Safe_TrainMaps/")
+# aggregate_runs("Data/Vehicles/PP_TestMaps/")
+# aggregate_runs("Data/Vehicles/Std_TrainMaps_old/")
 # aggregate_runs("Data/Vehicles/Std_TrainSteps/")

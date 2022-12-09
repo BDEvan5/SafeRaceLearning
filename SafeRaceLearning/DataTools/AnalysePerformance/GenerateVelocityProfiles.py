@@ -140,7 +140,10 @@ def esp_right_limits():
 
 def analyse_folder():
 
-    path = "Data/Vehicles/Safe_TrainSpeeds/"
+    # path = "Data/Vehicles/Safe_TrainMaps/"
+    path = "Data/Vehicles/PP_TestMaps/"
+    # path = "Data/Vehicles/Std_TrainMaps_old/"
+    # path = "Data/Vehicles/Safe_TrainSpeeds/"
     
     TestData = AnalyseTestLapData()
     TestData.explore_folder(path)

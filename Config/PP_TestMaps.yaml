@@ -1,15 +1,17 @@
 
-test_name: "Safe_TrainMaps" # name params
-architecture: "fast"
+test_name: "PP_TestMaps" # name params
+architecture: "PP"
+raceline: True
+pp_speed_mode: "raceline"
 
 set_n: 1
-n: 5
+n: 2
 
 # agent training parameters
-train_mode: "Online"
+train_mode: "PP"
 test_mode: "Std"
 
-n_test_laps: 20
+n_test_laps: 2
 
 noise_std: 0
 max_speed: 5
@@ -18,7 +20,7 @@ filter: False
 
 n_scans: 2
 random_seed: 10000
-reward: "Velocity"
+reward: "PP"
 n_train_steps: 10000
 
 runs:

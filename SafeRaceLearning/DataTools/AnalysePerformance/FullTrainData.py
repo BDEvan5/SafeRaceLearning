@@ -195,7 +195,8 @@ class AnalyseTestLapData:
         # save = self.path + "TrainInterventions/"
         ensure_path_exists(save)
 
-        plt.figure(2, figsize=(6, 1.7))
+        plt.figure(2, figsize=(4, 2))
+        # plt.figure(2, figsize=(6, 1.7))
         # plt.figure(2, figsize=(6, 2.1))
         plt.clf()
         interventions = self.all_safety_data[:, 4]
@@ -310,7 +311,8 @@ class AnalyseTestLapData:
         # save = self.path + "TrainInterventions/"
         ensure_path_exists(save)
 
-        plt.figure(2, figsize=(6, 2.1))
+        # plt.figure(2, figsize=(6, 2.1))
+        plt.figure(2, figsize=(4, 2))
         plt.clf()
         interventions = self.safety_data[:, 4]
         
@@ -339,7 +341,8 @@ class AnalyseTestLapData:
     def plot_deviation_training(self):
         save = self.path
 
-        plt.figure(2, figsize=(6, 2.1))
+        plt.figure(2, figsize=(4, 2))
+        # plt.figure(2, figsize=(6, 2.1))
         plt.clf()
         interventions = self.all_safety_data[:, 4]
         
@@ -389,6 +392,7 @@ def explore_folder(path):
 def analyse_folder():
 
     path = "Data/Vehicles/Safe_TrainMaps/"
+    # path = "Data/Vehicles/Safe_TrainSpeeds/"
 
 
     explore_folder(path)

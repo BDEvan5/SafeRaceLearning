@@ -139,8 +139,8 @@ def main():
     # run_file = "Safe_TrainSpeeds"
     
     # run_file = "Std_TrainSteps"
-    run_file = "Std_TrainSpeeds"
-    # run_file = "Std_TrainMaps"
+    # run_file = "Std_TrainSpeeds"
+    run_file = "Std_TrainMaps"
     
     
     sim = TrainSimulation(run_file)

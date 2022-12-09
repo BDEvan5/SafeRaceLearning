@@ -218,8 +218,12 @@ def analyse_folder():
     # path = "Data/Vehicles/SSS_NoisyAblation/"
 
     # path = "Data/Vehicles/Safe_TrainSteps/"
-    path = "Data/Vehicles/Safe_TrainSpeeds/"
+    # path = "Data/Vehicles/Safe_TrainMaps/"
+    # path = "Data/Vehicles/Safe_TrainSpeeds/"
+    
     # path = "Data/Vehicles/Std_TrainSteps/"
+    # path = "Data/Vehicles/Std_TrainMaps_old/"
+    path = "Data/Vehicles/PP_TestMaps/"
     
     
     

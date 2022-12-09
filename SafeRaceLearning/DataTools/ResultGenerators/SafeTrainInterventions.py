@@ -83,5 +83,70 @@ def compare_map_interventions():
     std_img_saving(name)
 
 
-compare_map_interventions()
+def fast_onlineT_speed_training_interventions():
+    p = "Data/Vehicles/Safe_TrainSpeeds/"
+
+    map_name = "f1_esp"
+    # speeds = range(4, 9)
+    speeds = [3, 4, 5, 6]
+    reward_name = "Velocity"
+    intervention_list = [[] for _ in range(len(speeds))]
+
+    set_n = 1
+    repeats = 5
+
+    for r in range(len(speeds)):
+        for i in range(repeats):
+            path = p + f"fast_Online_Std_{reward_name}_{map_name}_{speeds[r]}_1_{i}/"
+
+            states, actions, safety_data = load_all_training_data(path)
+
+            interventions = safety_data[:, 4]
+            # n= 50
+            n= 100
+            plot_len = 10000 / n
+            i = 0 
+            inter_ns = []
+            while i < len(interventions)-1:
+                inter_ns.append(0)
+                for _ in range(n):
+                    if interventions[i] > 0.001:
+                        inter_ns[-1] += 1
+                    i += 1
+                    if i >= len(interventions)-1:
+                        break
+
+            intervention_list[r].append(inter_ns)
+            while len(intervention_list[r][-1]) < plot_len:
+                intervention_list[r][-1].append(0)
+
+
+    plt.figure(1, figsize=(4.3, 1.7))
+    plt.clf()
+
+    xs = np.arange(0, 100, 1)
+    for r in range(len(speeds)):
+        # for r in range(len(speeds)-1, -1, -1):
+        min_line, max_line, avg_line = convert_to_min_max_avg(xs, intervention_list[r], xs)
+        plt.plot(xs, avg_line, '-', label=f"{speeds[r]} m/s", color=pp[r], linewidth=2)
+    plt.gcf().legend(loc='center', ncol=4, bbox_to_anchor=(0.5, 0))
+    plt.grid(True)
+    plt.ylim(-2, 62)
+    # plt.ylim(-2, 82)
+
+
+    plt.xlabel("Training Steps (x100)")
+    plt.ylabel("Interventions")
+    plt.xlim(0, 100)
+    plt.gca().xaxis.set_major_locator(MaxNLocator(integer=True))
+    plt.gca().yaxis.set_major_locator(MultipleLocator(20))
+    plt.tight_layout()
+
+    name = p + f"Safe_TrainSpeeds_interventions"
+    std_img_saving(name)
+
+
+
+# compare_map_interventions()
+fast_onlineT_speed_training_interventions()
 

@@ -6,6 +6,8 @@ from RacingRewards.DataTools.MapData import MapData
 from RacingRewards.RewardSignals.StdTrack import StdTrack 
 
 from SafeRaceLearning.Utils.utils import *
+from SafeRaceLearning.DataTools.plotting_utils import *
+
 
 class TestLapData:
     def __init__(self, path, lap_n=0):
@@ -77,10 +79,47 @@ def make_slip_compare_graph():
     plt.show()
     
     
+def compare_fast_speed():
+        # map_name = "f1_gbr"
+    map_name = "f1_esp"
+    path1 = f"Data/Vehicles/Std_TrainMaps_old/"
+    path2 = f"Data/Vehicles/Safe_TrainMaps/"
+    path3 = f"Data/Vehicles/PP_TestMaps/"
+    path1 = path1 + f"fast_Std_Std_Cth_f1_esp_5_1_1/"
+    path2 = path2 + f"fast_Online_Std_Velocity_f1_esp_5_1_0/"
+    path3 = path3 + f"PP_PP_Std_PP_f1_esp_5_1_0/"
+
+    pp_data = TestLapData(path1)
+    agent_data = TestLapData(path2, 1)
+    agent_data2 = TestLapData(path3, 1)
+    progresses1 = pp_data.generate_state_progress_list() * 100
+    progresses2 = agent_data.generate_state_progress_list() * 100
+    progresses3 = agent_data2.generate_state_progress_list() * 100
+
+    fig, (ax1) = plt.subplots(1, 1, figsize=(4, 1.7), sharex=True)
+    # fig, (ax1) = plt.subplots(1, 1, figsize=(6.5, 2), sharex=True)
+    ax1.plot(progresses1, pp_data.states[:-1, 3], color=pp[0], label="Conventional", alpha=0.8, linewidth=2)
+    ax1.plot(progresses3, agent_data2.states[:-1, 3], color=pp[2], label="Classic", alpha=0.9, linewidth=2)
+    ax1.plot(progresses2, agent_data.states[:-1, 3], color=pp[4], label="Safe", alpha=0.9, linewidth=2)
+
+    ax1.set_ylabel("Speed (m/s)")
+    ax1.set_xlabel("Track Progress (%)")
+    fig.legend(ncol=3, bbox_to_anchor=(0.5, 0.0), loc='center')
     
+    plt.xlim([0, 40])
+
+    plt.grid(True)
+    plt.tight_layout()
+
+    name = "Data/Images/speed_profile_compare"
+    std_img_saving(name)
+
+    # plt.savefig(f"{pat}/fast_speed_compare{map_name}.pdf", bbox_inches='tight')
+    # plt.savefig(f"{path}/fast_speed_compare{map_name}.svg", bbox_inches='tight')
+
 
 def make_velocity_compare_graph():
-    map_name = "f1_aut"
+    map_name = "f1_esp"
     pp_path = f"Data/Vehicles/SSS_ppValidation/PP_PP_Std_PP_{map_name}_6_1_0/"
     super_path = f"Data/Vehicles/SSS_ppValidation/PP_PP_Super_PP_{map_name}_6_1_0/"
 
@@ -109,4 +148,5 @@ def make_velocity_compare_graph():
     # plt.show()
 
 
-make_velocity_compare_graph()    
+# make_velocity_compare_graph()    
+compare_fast_speed()

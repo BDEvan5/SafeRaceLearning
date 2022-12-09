@@ -224,8 +224,9 @@ def main():
     # run_file = "SSS_RandomValidation"
     # run_file = "SSS_ppValidation"
     # run_file = "SSS_RandomSpeeds"
-    run_file = "SSS_NoisyAblation"
+    # run_file = "SSS_NoisyAblation"
     
+    run_file = "PP_TestMaps"
     
     sim = TestSimulation(run_file)
     sim.run_testing_evaluation()
