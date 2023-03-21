@@ -133,7 +133,7 @@ def KernelValidationPP_Graphs():
                     metric_data = float(line[super_metric_inds[i]])
                     data_super[i].append(metric_data)
 
-        fig, ax = plt.subplots(1, 2, figsize=(4, 2))
+        fig, ax = plt.subplots(1, 2, figsize=(4.5, 1.7))
         barWidth = 0.4
         
         
@@ -320,8 +320,8 @@ def KernelValidationPP_BarGraphs():
 # KernelValidationRandom()
 # KernelValidationPP_BarGraphs()
 # KernelValidationPP_GraphsIntervention()
-KernelRandomSpeeds_GraphsIntervention()
-# KernelValidationPP_Graphs()
+# KernelRandomSpeeds_GraphsIntervention()
+KernelValidationPP_Graphs()
 # KernelValidationPP()
 
 

@@ -96,7 +96,8 @@ def compare_fast_speed():
     progresses2 = agent_data.generate_state_progress_list() * 100
     progresses3 = agent_data2.generate_state_progress_list() * 100
 
-    fig, (ax1) = plt.subplots(1, 1, figsize=(4, 1.7), sharex=True)
+    fig, (ax1) = plt.subplots(1, 1, figsize=(5, 1.6), sharex=True)
+    # fig, (ax1) = plt.subplots(1, 1, figsize=(4, 1.7), sharex=True)
     # fig, (ax1) = plt.subplots(1, 1, figsize=(6.5, 2), sharex=True)
     ax1.plot(progresses1, pp_data.states[:-1, 3], color=pp[0], label="Conventional", alpha=0.8, linewidth=2)
     ax1.plot(progresses3, agent_data2.states[:-1, 3], color=pp[2], label="Classic", alpha=0.9, linewidth=2)
@@ -106,7 +107,9 @@ def compare_fast_speed():
     ax1.set_xlabel("Track Progress (%)")
     fig.legend(ncol=3, bbox_to_anchor=(0.5, 0.0), loc='center')
     
-    plt.xlim([0, 40])
+    plt.xlim([0, 60])
+    plt.ylim([0.5, 5.5])
+    plt.yticks([1, 3, 5])
 
     plt.grid(True)
     plt.tight_layout()

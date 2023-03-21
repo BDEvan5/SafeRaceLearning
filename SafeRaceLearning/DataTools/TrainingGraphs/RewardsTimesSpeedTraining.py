@@ -86,7 +86,8 @@ def fast_onlineT_maps_training():
             length_list[r].append(lengths/10)
             reward_list[r].append(rewards)
 
-    fig, (ax1, ax2) = plt.subplots(2, 1, sharex=True, figsize=(4.3, 2.70))
+    fig, (ax1, ax2) = plt.subplots(1, 2, sharex=True, figsize=(8.2, 2.2))
+    # fig, (ax1, ax2) = plt.subplots(2, 1, sharex=True, figsize=(4.3, 2.70))
 
     xs = np.arange(0, 100, 1)
     for r in range(len(map_names)):
@@ -99,9 +100,10 @@ def fast_onlineT_maps_training():
         ax2.fill_between(xs, min_line, max_line, color=pp[r], alpha=0.3)
 
     ax1.get_yaxis().set_major_locator(plt.MultipleLocator(15))
+    ax1.set_xlabel("Training Steps (x100)")
     ax2.set_xlabel("Training Steps (x100)")
-    ax2.set_ylabel("Reward per Lap")
-    ax1.set_ylabel("Lap time (s)")
+    ax2.set_title("Reward per Lap")
+    ax1.set_title("Lap time (s)")
     ax2.get_yaxis().set_major_locator(plt.MultipleLocator(150))
     # ax1.legend(loc='center right', ncol=1, bbox_to_anchor=(1.22, 0.5))
     handles, labels = ax1.get_legend_handles_labels()

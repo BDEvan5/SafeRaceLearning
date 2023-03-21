@@ -14,7 +14,8 @@ def comparison_performance_Barplot():
     std_folder = "Data/Vehicles/Std_TrainMaps_old/"
     pp_folder = "Data/Vehicles/PP_TestMaps/"
     
-    fig, axs = plt.subplots(1, 2, figsize=(4.5, 1.8))
+    fig, axs = plt.subplots(1, 2, figsize=(5, 1.6))
+    # fig, axs = plt.subplots(1, 2, figsize=(4.5, 1.8))
     xs = np.arange(4)
     
     barWidth = 0.4
