@@ -27,6 +27,28 @@ class RandomPlanner:
     def lap_complete(self):
         pass
 
+class RandomFeasiblePlanner:
+    def __init__(self, run, conf):
+        self.d_max = conf.max_steer # radians  
+        self.name = run.run_name
+
+        self.conf = conf
+        self.run = run
+
+        self.max_speed = run.max_speed
+
+        self.path = conf.vehicle_path + run.path + run.run_name 
+        init_file_struct(self.path)
+
+    def plan(self, obs):
+        # speed = np.random.uniform(2, self.max_speed)
+        speed = 2
+        steering = np.random.uniform(-self.d_max, self.d_max)
+        return np.array([steering, speed])
+
+    def lap_complete(self):
+        pass
+
 if __name__ == '__main__':
     pass
 

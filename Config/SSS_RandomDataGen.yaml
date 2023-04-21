@@ -1,0 +1,26 @@
+
+
+architecture: "RandoData"
+test_name: "SSS_DataGen"
+filter: False
+n_test_laps: 10
+
+set_n: 1
+n: 1
+
+train_mode: "Std"
+test_mode: "Super"
+reward: "None"
+
+noise_std: 0
+n_scans: 1
+random_seed: 1000
+max_speed: 2
+
+runs:
+  # - map_name: "f1_esp"
+  # - map_name: "f1_aut"
+  # - map_name: "f1_mco"
+  - map_name: "f1_gbr"
+
+
