@@ -29,12 +29,7 @@ class StdNetworkTwo(nn.Module):
         
     def forward_loss(self, x, targets):
         mu = self.forward(x)
-        # format_targets  = torch.zeros_like(mu)
-        # format_targets[torch.arange(targets.shape[0]), targets] = 1
-        # print(f"Targets: {targets.numpy()[:20]}")
-        # print(f"Targets: {format_targets.numpy()[:20]}")
-        # loss = F.binary_cross_entropy_with_logits(mu, format_targets)
-        loss = F.cross_entropy(mu, targets)
+        loss = F.mse_loss(mu, targets)
         
         return mu, loss
     
@@ -42,9 +37,11 @@ class StdNetworkTwo(nn.Module):
         x = F.relu(self.fc1(x))
         x = F.relu(self.fc2(x))
         mu = self.fc_mu(x)
-        mu = F.softmax(mu, dim=1)
+        mu = torch.sigmoid(mu) # output [0, 1]
         
-        return mu
+        print(f"Mu: {mu.detach().numpy()[:20].T}")
+        
+        return mu[:, 0]
     
     
 def load_data(folder):
@@ -58,14 +55,16 @@ def load_data(folder):
     
     test_x = states[test_inds]
     test_y = actions[test_inds]
+    test_y = np.ones_like(test_y) - test_y
     
     train_x = states[~np.isin(np.arange(states.shape[0]), test_inds)]
     train_y = actions[~np.isin(np.arange(states.shape[0]), test_inds)]
+    train_y = np.ones_like(train_y) - train_y
     
     test_x = torch.FloatTensor(test_x)
-    test_y = torch.LongTensor(test_y)
+    test_y = torch.FloatTensor(test_y)
     train_x = torch.FloatTensor(train_x)
-    train_y = torch.LongTensor(train_y)
+    train_y = torch.FloatTensor(train_y)
     
     print(f"X --> Train: {train_x.shape} --> Test: {test_x.shape}")
     print(f"Y --> Train: {train_y.shape} --> Test: {test_y.shape}")
@@ -75,25 +74,25 @@ def load_data(folder):
 def train_networks(folder, seed):
     train_x, train_y, test_x, test_y = load_data(folder)
     
-    network = StdNetworkTwo(train_x.shape[1], 2)
+    network = StdNetworkTwo(train_x.shape[1], 1)
     optimizer = torch.optim.Adam(network.parameters(), lr=0.001)
     
-    train_iterations = 1000
+    train_iterations = 400
     train_losses, test_losses = [], []
     
     for i in range(train_iterations):
         network.eval()
         test_pred_y, test_loss = network.forward_loss(test_x, test_y)
-        n_print = 20
-        print(f"Probs: {test_pred_y.detach().numpy()[:n_print]}")
-        _, predictions = torch.max(test_pred_y, dim=1)
-        my_predictions = predictions.numpy()
-        print(f"N_positive: {my_predictions[my_predictions == 1].shape[0]} -> True positive: {test_y.numpy()[test_y == 1].shape[0]}")
-        print(f"Predictions: {predictions.numpy()[:n_print]}")
-        print(f"True: {test_y.numpy()[:n_print]}"  )
-        correct_values = predictions == test_y
-        print(f"Therefore: {correct_values.numpy()[:n_print]}")
-        n_correct = torch.sum(correct_values)
+        n_print = 10
+        my_predictions = test_pred_y.detach().numpy()
+        predictions = np.zeros_like(my_predictions)
+        predictions[my_predictions > 0.5] = 1
+        # print(f"Predictions: {my_predictions[:n_print]}"  )
+        # print(f"True: {test_y.numpy()[:n_print]}"  )
+        correct_values = predictions == test_y.numpy()
+        # print(f"Therefore: {correct_values[:n_print]}")
+        n_correct = np.sum(correct_values)
+        print(f"N_true: {np.sum(predictions)} -> N correct: {n_correct} / {correct_values.shape[0]}")
         network.train()
         
         optimizer.zero_grad()
